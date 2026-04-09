@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogIn } from "lucide-react";
 import { useState } from "react";
 
 import { ThemeToggle } from "@/components/layout/theme-toggle";
@@ -31,6 +31,12 @@ export function MobileNav({ links }: { links: Array<{ href: string; label: strin
             ))}
             <Button asChild className="mt-2">
               <Link href="/contact">Start a Project</Link>
+            </Button>
+            <Button asChild variant="outline" className="flex items-center gap-2">
+              <Link href="/dashboard/sign-in">
+                <LogIn className="h-4 w-4" />
+                Client Portal
+              </Link>
             </Button>
           </nav>
         </div>

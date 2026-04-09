@@ -147,8 +147,8 @@ export function LeadFunnel() {
                 <Rocket className="w-5 h-5 text-amber-400" />
               </div>
               <div>
-                <h3 className="font-semibold text-gray-900">Hi there! Let's grow your business</h3>
-                <p className="text-sm text-gray-500">Tell us about your project and we'll create a personalized quote for you.</p>
+                <h3 className="font-semibold text-gray-900">Hi there! Let&apos;s grow your business</h3>
+                <p className="text-sm text-gray-500">Tell us about your project and we&apos;ll create a personalized quote for you.</p>
               </div>
             </div>
             <p className="text-sm text-gray-600 font-medium">What type of service do you need?</p>
@@ -179,7 +179,7 @@ export function LeadFunnel() {
               </button>
               <span className="text-sm text-gray-500">Back</span>
             </div>
-            <p className="text-sm text-gray-600 font-medium">Great choice! What's your focus area?</p>
+            <p className="text-sm text-gray-600 font-medium">Great choice! What&apos;s your focus area?</p>
             <p className="text-xs text-gray-400">Selected: <span className="text-[#103D2E] font-medium">{leadData.service}</span></p>
             <div className="space-y-2 max-h-[280px] overflow-y-auto">
               {services[leadData.service as keyof typeof services]?.map((subService) => (
@@ -210,7 +210,7 @@ export function LeadFunnel() {
             </div>
             <div className="flex items-center gap-2">
               <Building2 className="w-5 h-5 text-[#103D2E]" />
-              <p className="text-sm text-gray-600 font-medium">What's your company name?</p>
+              <p className="text-sm text-gray-600 font-medium">What&apos;s your company name?</p>
             </div>
             <input
               type="text"
@@ -370,7 +370,7 @@ export function LeadFunnel() {
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
                 <Check className="w-8 h-8 text-green-600" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">You're all set!</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">You&apos;re all set!</h3>
               <p className="text-sm text-gray-600 mb-4">Our team will review your requirements and send a customized quote within 24 hours.</p>
               <button
                 onClick={resetFunnel}
@@ -490,7 +490,7 @@ export function LeadFunnel() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-white">Get Your Free Quote</h3>
-                  <p className="text-xs text-white/70">We'll tailor a solution for you</p>
+                  <p className="text-xs text-white/70">We&apos;ll tailor a solution for you</p>
                 </div>
               </div>
               <button

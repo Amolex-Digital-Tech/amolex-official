@@ -12,7 +12,7 @@ const footerLinks = {
   ],
   Platform: [
     { href: "/portfolio", label: "Portfolio" },
-    { href: "/dashboard/sign-in", label: "Newsletter" }
+    { href: "/dashboard/sign-in", label: "Client Portal" }
   ],
   Solutions: [
     { href: "/services", label: "Web Development" },

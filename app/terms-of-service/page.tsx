@@ -16,7 +16,7 @@ export default function TermsOfServicePage() {
           <section>
             <h2 className="text-2xl font-semibold mb-4">Introduction</h2>
             <p>
-              Welcome to Amolex Digital Tech. These Terms of Service ("Terms") govern your use of our website located at <a href="https://amolex.tech" className="text-[#B29267] hover:underline">https://amolex.tech</a> (the "Service") operated by Amolex Digital Tech.
+              Welcome to Amolex Digital Tech. These Terms of Service (&quot;Terms&quot;) govern your use of our website located at <a href="https://amolex.tech" className="text-[#B29267] hover:underline">https://amolex.tech</a> (the &quot;Service&quot;) operated by Amolex Digital Tech.
             </p>
             <p className="mt-4">
               By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of these terms, then you may not access the Service.
@@ -75,7 +75,7 @@ export default function TermsOfServicePage() {
           <section>
             <h2 className="text-2xl font-semibold mb-4">Disclaimer</h2>
             <p>
-              Your use of the Service is at your sole risk. The Service is provided on an "AS IS" and "AS AVAILABLE" basis. The Service is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement or course of performance.
+              Your use of the Service is at your sole risk. The Service is provided on an &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; basis. The Service is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement or course of performance.
             </p>
           </section>
 
@@ -92,7 +92,7 @@ export default function TermsOfServicePage() {
           <section>
             <h2 className="text-2xl font-semibold mb-4">Changes to Terms</h2>
             <p>
-              We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
+              We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days&apos; notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
             </p>
           </section>
 

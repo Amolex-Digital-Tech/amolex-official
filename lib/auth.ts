@@ -1,92 +1,78 @@
-import NextAuth from "next-auth";
 import { redirect } from "next/navigation";
-import Credentials from "next-auth/providers/credentials";
-import { z } from "zod";
+import { createSupabaseServerClient } from "./supabase/server";
 
-const credentialsSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8)
-});
-
-const adminEmail = process.env.ADMIN_EMAIL ?? "admin@amolex.tech";
-const adminPassword = process.env.ADMIN_PASSWORD ?? "ChangeMe123!";
-
-export const { handlers, auth, signIn, signOut } = NextAuth({
+export type AuthContext = {
   session: {
-    strategy: "jwt"
-  },
-  pages: {
-    signIn: "/dashboard/sign-in"
-  },
-  providers: [
-    Credentials({
-      credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" }
-      },
-      authorize(rawCredentials) {
-        const parsed = credentialsSchema.safeParse(rawCredentials);
+    user: {
+      id: string;
+      email?: string;
+      app_metadata?: Record<string, unknown>;
+      user_metadata?: Record<string, unknown>;
+    };
+    expires_at?: number;
+    access_token?: string;
+    refresh_token?: string;
+  };
+  role: string;
+  tenantId: string | null;
+};
 
-        if (!parsed.success) {
-          return null;
-        }
+export async function getSession(): Promise<AuthContext | null> {
+  const supabase = createSupabaseServerClient();
+  const { data, error } = await supabase.auth.getSession();
 
-        const { email, password } = parsed.data;
-
-        if (email === adminEmail && password === adminPassword) {
-          return {
-            id: "amolex-admin",
-            email,
-            name: "Amolex Admin",
-            role: "admin"
-          };
-        }
-
-        return null;
-      }
-    })
-  ],
-  callbacks: {
-    jwt({ token, user }) {
-      if (user) {
-        token.role = (user as { role?: string }).role ?? "admin";
-      }
-
-      return token;
-    },
-    session({ session, token }) {
-      if (session.user) {
-        session.user.role = typeof token.role === "string" ? token.role : "admin";
-      }
-
-      return session;
-    }
+  if (error || !data.session) {
+    return null;
   }
-});
 
-export async function requireAdminSession() {
-  const session = await auth();
+  const role =
+    (data.session.user.app_metadata?.role as string | undefined) ??
+    (data.session.user.user_metadata?.role as string | undefined) ??
+    "member";
 
-  if (!session?.user) {
+  const tenantId =
+    (data.session.user.app_metadata?.tenant_id as string | undefined) ??
+    (data.session.user.user_metadata?.tenant_id as string | undefined) ??
+    null;
+
+  return { session: data.session, role, tenantId };
+}
+
+export async function requireAdminSession(): Promise<AuthContext> {
+  const context = await getSession();
+
+  if (!context) {
     redirect("/dashboard/sign-in");
   }
 
-  return session;
+  if (!["owner", "admin"].includes(context.role)) {
+    redirect("/dashboard/sign-in");
+  }
+
+  return context;
 }
 
-declare module "next-auth" {
-  interface Session {
-    user: {
-      name?: string | null;
-      email?: string | null;
-      image?: string | null;
-      role?: string;
-    };
+export async function requireUserSession(): Promise<AuthContext> {
+  const context = await getSession();
+
+  if (!context) {
+    redirect("/dashboard/sign-in");
   }
+
+  return context;
 }
 
-declare module "@auth/core/jwt" {
-  interface JWT {
-    role?: string;
+// Get user's role and tenant info (without redirecting)
+export async function getUserRole(): Promise<{ role: string; tenantId: string | null; isAdmin: boolean } | null> {
+  const context = await getSession();
+
+  if (!context) {
+    return null;
   }
+
+  return {
+    role: context.role,
+    tenantId: context.tenantId,
+    isAdmin: ["owner", "admin"].includes(context.role)
+  };
 }

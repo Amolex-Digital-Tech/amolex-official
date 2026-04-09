@@ -7,6 +7,7 @@ import { Logo } from "@/components/layout/logo";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { LogIn } from "lucide-react";
 
 const links = [
   { href: "/", label: "Home" },
@@ -41,6 +42,11 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
+          <Button variant="outline" size="icon" asChild aria-label="Open client portal">
+            <Link href="/dashboard/sign-in">
+              <LogIn className="h-4 w-4" />
+            </Link>
+          </Button>
           <Button asChild>
             <Link href="/contact">Start Project</Link>
           </Button>
