@@ -73,7 +73,7 @@ export function SignInForm() {
         <h1 className="mt-4 font-heading text-3xl font-semibold">Client Login</h1>
         <p className="mt-3 text-sm leading-7 text-muted-foreground">
           Enter your company name and password to access your dashboard. 
-          Contact Amolex if you don't have login credentials.
+          Contact Amolex if you don&apos;t have login credentials.
         </p>
 
         <form className="mt-6 grid gap-4" onSubmit={handleSubmit}>

@@ -175,7 +175,7 @@ export default function ClientLoginPage() {
             {/* Helper */}
             <div className="mt-6 text-center">
               <p className="text-slate-500 text-sm">
-                Don't have access?{' '}
+                Don&apos;t have access?{' '}
                 <Link href="/contact" className="text-amber-600 hover:text-amber-700 font-medium">
                   Contact our team
                 </Link>
