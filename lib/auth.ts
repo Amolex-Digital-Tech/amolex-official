@@ -1,8 +1,8 @@
 import NextAuth from "next-auth";
 import { createSupabaseServerClient } from "./supabase/server";
 
-// Export NextAuth handlers for the API route
-export const { handlers, auth, signIn, signOut } = NextAuth({
+// Create NextAuth configuration
+const nextAuthInstance = NextAuth({
   providers: [],
   callbacks: {
     async session({ session, token }) {
@@ -10,6 +10,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }
   }
 });
+
+// Export NextAuth handlers for the API route
+export const handlers = nextAuthInstance.handlers;
+export const auth = nextAuthInstance.auth;
+export const signIn = nextAuthInstance.signIn;
+export const signOut = nextAuthInstance.signOut;
 
 // Types for custom auth context
 export type AuthContext = {
