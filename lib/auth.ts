@@ -1,6 +1,17 @@
-import { redirect } from "next/navigation";
+import NextAuth from "next-auth";
 import { createSupabaseServerClient } from "./supabase/server";
 
+// Export NextAuth handlers for the API route
+export const { handlers, auth, signIn, signOut } = NextAuth({
+  providers: [],
+  callbacks: {
+    async session({ session, token }) {
+      return session;
+    }
+  }
+});
+
+// Types for custom auth context
 export type AuthContext = {
   session: {
     user: {
@@ -17,6 +28,7 @@ export type AuthContext = {
   tenantId: string | null;
 };
 
+// Get session using Supabase directly (for custom auth logic)
 export async function getSession(): Promise<AuthContext | null> {
   const supabase = createSupabaseServerClient();
   const { data, error } = await supabase.auth.getSession();
@@ -35,18 +47,18 @@ export async function getSession(): Promise<AuthContext | null> {
     (data.session.user.user_metadata?.tenant_id as string | undefined) ??
     null;
 
-  return { session: data.session, role, tenantId };
+  return { session: data.session as any, role, tenantId };
 }
 
 export async function requireAdminSession(): Promise<AuthContext> {
   const context = await getSession();
 
   if (!context) {
-    redirect("/dashboard/sign-in");
+    throw new Error("Unauthorized");
   }
 
   if (!["owner", "admin"].includes(context.role)) {
-    redirect("/dashboard/sign-in");
+    throw new Error("Forbidden");
   }
 
   return context;
@@ -56,7 +68,7 @@ export async function requireUserSession(): Promise<AuthContext> {
   const context = await getSession();
 
   if (!context) {
-    redirect("/dashboard/sign-in");
+    throw new Error("Unauthorized");
   }
 
   return context;
