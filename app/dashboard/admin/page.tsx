@@ -671,10 +671,10 @@ export default function AdminDashboardPage() {
           ...(clientMetrics[selectedClient.id]?.analytics?.ranges || {}),
           [analyticsFormRange]: {
             ...analyticsForm
-          }
-        },
+          } as AnalyticsConfig
+        } as Record<RangeKey, AnalyticsConfig>,
         updatedAt: new Date().toISOString()
-      },
+      } as const,
       socialAccounts: socialList,
       postsData: postsList
     };
