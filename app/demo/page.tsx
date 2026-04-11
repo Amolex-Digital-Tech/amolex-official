@@ -1,6 +1,5 @@
 import { ClientDashboardShell } from "@/components/dashboard/client-dashboard-shell";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getUserRole } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 // Demo page - shows sample data without requiring auth
@@ -31,7 +30,6 @@ function ClientDashboardContent() {
     <ClientDashboardShell
       title="Client Overview (Demo)"
       description="View your social media analytics, reports, and performance metrics."
-      tenantName={tenantName}
     >
       <div className="mb-4 rounded-lg bg-yellow-100 p-4 text-yellow-800">
         This is a demo showing sample data. Connect to Supabase to see real data.

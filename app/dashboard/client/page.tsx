@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import type { TooltipProps } from "recharts";
 import {
   CartesianGrid,
   Cell,
@@ -127,7 +126,11 @@ function TooltipContent({
   active,
   payload,
   label
-}: TooltipProps<number, string>) {
+}: {
+  active?: boolean;
+  payload?: Array<{ dataKey?: string | number; name?: string; value?: number; color?: string }>;
+  label?: string;
+}) {
   if (!active || !payload?.length) return null;
 
   return (

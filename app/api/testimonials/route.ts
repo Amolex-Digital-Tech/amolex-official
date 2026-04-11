@@ -5,6 +5,8 @@ import { getTestimonials } from "@/lib/data";
 import { prisma } from "@/lib/db";
 import { auth } from "@/lib/auth";
 
+export const dynamic = 'force-dynamic';
+
 const testimonialSchema = z.object({
   name: z.string().min(2),
   company: z.string().min(2),

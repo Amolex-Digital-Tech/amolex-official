@@ -78,7 +78,6 @@ export default function ClientAnalyticsDemoPage() {
     <ClientDashboardShell
       title="Analytics (Demo)"
       description="Interactive visualizations of your social media performance."
-      tenantName={tenantName}
     >
       <div className="mb-4 rounded-lg bg-yellow-100 p-4 text-yellow-800">
         This is a demo showing sample data. Connect to Supabase to see real data.

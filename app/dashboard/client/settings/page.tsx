@@ -30,7 +30,6 @@ export default function ClientSettingsPage() {
     <ClientDashboardShell
       title="Settings"
       description="Manage your account and workspace settings."
-      tenantName={workspaceName}
     >
       <div className="grid gap-6 md:grid-cols-2">
         <Card>

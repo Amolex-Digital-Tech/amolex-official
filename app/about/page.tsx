@@ -483,7 +483,7 @@ export default function AboutPage() {
           <div className="relative z-10 space-y-8">
             {/* Row 1: Executive Leadership - Tewodros & Natnael */}
             <div className="flex flex-wrap justify-center gap-6">
-              {teamDivisions[0].members.map((member, i) => (
+              {(teamDivisions[0]?.members || []).map((member, i) => (
                 <motion.div
                   key={member.name}
                   initial={{ opacity: 0, y: 20 }}
@@ -520,8 +520,8 @@ export default function AboutPage() {
                 <div className="mb-2 inline-block rounded-full bg-[#B29267]/10 px-2 py-1 text-xs font-semibold text-[#B29267]">
                   Strategic Division
                 </div>
-                <h4 className="font-heading text-lg font-bold text-gray-900">{teamDivisions[1].members[0].name}</h4>
-                <p className="mt-1 text-xs text-gray-500">{teamDivisions[1].members[0].role}</p>
+                <h4 className="font-heading text-lg font-bold text-gray-900">{teamDivisions[1]?.members?.[0]?.name}</h4>
+                <p className="mt-1 text-xs text-gray-500">{teamDivisions[1]?.members?.[0]?.role}</p>
               </motion.div>
             </div>
 
@@ -532,7 +532,7 @@ export default function AboutPage() {
 
             {/* Row 3: Meron, Dawit, Samuel */}
             <div className="flex flex-wrap justify-center gap-6">
-              {[teamDivisions[1].members[1], teamDivisions[2].members[0], teamDivisions[2].members[1]].map((member, i) => (
+              {((teamDivisions[1]?.members || []).concat(teamDivisions[2]?.members || []).concat(teamDivisions[3]?.members || [])).slice(0, 3).map((member, i) => (
                 <motion.div
                   key={member.name}
                   initial={{ opacity: 0, y: 20 }}
@@ -543,7 +543,7 @@ export default function AboutPage() {
                   className="w-64 rounded-xl floating-glass-card p-4 text-center"
                 >
                   <div className="mb-2 inline-block rounded-full bg-[#103D2E]/10 px-2 py-0.5 text-[10px] font-semibold text-[#103D2E]">
-                    {member.division?.replace(" Division", "")}
+                    {member.focus}
                   </div>
                   <h4 className="font-heading text-base font-bold text-gray-900">{member.name}</h4>
                   <p className="mt-1 text-xs text-gray-500">{member.role}</p>
@@ -558,7 +558,7 @@ export default function AboutPage() {
 
             {/* Row 4: Technical - Hana & Yonatan */}
             <div className="flex flex-wrap justify-center gap-6">
-              {teamDivisions[3].members.map((member, i) => (
+              {(teamDivisions[3]?.members || []).map((member, i) => (
                 <motion.div
                   key={member.name}
                   initial={{ opacity: 0, y: 20 }}

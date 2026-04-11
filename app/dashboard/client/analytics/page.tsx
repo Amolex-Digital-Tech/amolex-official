@@ -272,7 +272,7 @@ export default function ClientAnalyticsPage() {
                 <YAxis tick={{ fontSize: 12, fill: "#69736b" }} />
                 <Tooltip
                   contentStyle={{ borderRadius: 12, border: "1px solid #e4ecd9" }}
-                  formatter={(value: any, name: string) => [formatNumber(Math.round(value)), name]}
+                                    formatter={(value: unknown, name: unknown) => [formatNumber(Math.round(Number(value))), String(name)]}
                 />
                 <Legend />
                 <Line type="monotone" dataKey="impressions" name="Impressions" stroke={lineSeriesColors.impressions} strokeWidth={3} dot={false} />
@@ -302,7 +302,7 @@ export default function ClientAnalyticsPage() {
                         cy="50%"
                         innerRadius={60}
                         outerRadius={90}
-                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(1)}%`}
+                        label={({ name, percent }) => `${name} ${((percent ?? 0) * 100).toFixed(1)}%`}
                         labelLine={false}
                       >
                         {donut.map((entry) => (

@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { requireUserSession } from "@/lib/auth";
 
+export const dynamic = 'force-dynamic';
+
 const DEFAULT_PAGE_SIZE = 20;
 
 export async function GET(request: Request) {

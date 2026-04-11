@@ -5,6 +5,8 @@ import { getProjects } from "@/lib/data";
 import { prisma } from "@/lib/db";
 import { auth } from "@/lib/auth";
 
+export const dynamic = 'force-dynamic';
+
 const projectSchema = z.object({
   slug: z.string().min(3),
   name: z.string().min(2),
