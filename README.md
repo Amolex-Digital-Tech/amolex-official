@@ -75,3 +75,4 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - **Database**: Supabase (PostgreSQL)
 - **Auth**: NextAuth.js
 - **Deployment**: Vercel
+# Amole-Digital-Tech
